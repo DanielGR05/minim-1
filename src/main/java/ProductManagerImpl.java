@@ -53,4 +53,12 @@ public class ProductManagerImpl implements ProductManager {
     public User getUser(String number) {
         return null;
     }
+
+    public static void main(String[] args) {
+        ProductManager pm = new ProductManagerImpl();
+        pm.addProduct("C1", "Coca-cola zero", 2);
+        pm.addProduct("C2", "Coca-cola", 2.5);
+        pm.addProduct("B1", "Lomo queso", 3);
+        pm.addProduct("B2", "bacon queso", 3.5);
+    }
 }
