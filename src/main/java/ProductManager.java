@@ -20,4 +20,7 @@ public interface ProductManager {
     Product getProduct(String c1);
 
     User getUser(String number);
+
+    // public List<Product> getProductsBySales();
+
 }
