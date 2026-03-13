@@ -14,7 +14,7 @@ public class Order {
     }
 
     public void addLP(int i, String s) {
-        for(int j=0; j<i; i++ ){
+        for(int j=0; j<i; j++ ){
             this.comanda.add(s);
         }
     }

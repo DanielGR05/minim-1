@@ -21,6 +21,6 @@ public interface ProductManager {
 
     User getUser(String number);
 
-    // public List<Product> getProductsBySales();
+    public List<Product> getProductsBySales();
 
 }

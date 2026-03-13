@@ -1,6 +1,6 @@
 package models;
 
-public class Product {
+public class Product{
 
     private  String id;
     private  String name;
@@ -22,6 +22,7 @@ public class Product {
         return this.name;
     }
 
+
     public double getPrice() {
         return price;
     }
@@ -34,3 +35,4 @@ public class Product {
         this.sales += quantity;
     }
 }
+
