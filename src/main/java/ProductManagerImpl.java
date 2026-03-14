@@ -1,3 +1,4 @@
+import models.LP;
 import models.Order;
 import models.Product;
 import models.User;
@@ -48,13 +49,31 @@ public class ProductManagerImpl implements ProductManager {
     public Order deliverOrder() {
         Order order = orderQueue.poll();
         // TO-DO
+        if (order == null){
+            return null;
+        }
+
+        User u = users.get(order.getUser());
+        if (u == null){
+            u = new User(order.getUser());
+            users.put(order.getUser(), u);
+        }
+        u.addOrder(order);
+
+        for(LP lp: order.getComanda()) {
+            Product p;
+            p = getProduct(lp.getIdentificador());
+            if(p != null){
+                p.addSales(lp.getQuantitat());
+            }
+        }
         return order;
     }
 
     @Override
     public Product getProduct(String c1) {
         for(Product p: productList){
-            if(p.getId().equals(c1)){
+            if(p.getId().equals(c1) || p.getName().equals(c1)){
                 return p;
             }
         }
@@ -66,8 +85,16 @@ public class ProductManagerImpl implements ProductManager {
         return users.get(number);
     }
 
+    @Override
+    public List<Order> OrdersByUser(String number) {
+        User u = users.get(number);
+        List<Order> ordersU = u.orders();
+        return ordersU;
+    }
+
+
     public static void main(String[] args) {
-        ProductManager pm = new ProductManagerImpl();
+        /*ProductManager pm = new ProductManagerImpl();
         pm.addProduct("C1", "Coca-cola zero", 2);
         pm.addProduct("C2", "Coca-cola", 2.5);
         pm.addProduct("B1", "Lomo queso", 3);
@@ -76,6 +103,6 @@ public class ProductManagerImpl implements ProductManager {
         List<Product> products = pm.getProductsByPrice();
         for (Product p : products) {
             System.out.println(p.getId() + " - " + p.getName() + " - " + p.getPrice());
-        }
+        }*/
     }
 }

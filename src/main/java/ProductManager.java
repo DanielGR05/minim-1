@@ -23,4 +23,7 @@ public interface ProductManager {
 
     public List<Product> getProductsBySales();
 
+    public List<Order> OrdersByUser(String dni);
+
+
 }
